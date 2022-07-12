@@ -44,5 +44,7 @@ rosrun play_motion run_motion_python_node.py
 ```
 
 ## Credits
-Prof. Simone Macciò
+
+Professor: Simone Macciò
+
 Students: SINATRA GESUALDO  || ABDELGHANI BAKOUR || ZHOUYANG HONG     
