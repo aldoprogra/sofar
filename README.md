@@ -28,7 +28,7 @@ roscore
 catkin build -DCATKIN_ENABLE_TESTING=0 -j $(expr `nproc` / 2)
 ```
 ```
-rosparam load dump.yaml
+rosparam load tiago_motions.yaml
 ```
 
 5 - open, source and run this commands in three terminals :
