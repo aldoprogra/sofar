@@ -1,48 +1,45 @@
 # Software-Architecture-Assignment
+
 ## Description
-This is a ros architecture to exploit open-source human pose-estimation to teleoperate robots trought uper-body movements. the movements used in this assignment are: 
-* rise_hand
-* reach_floor
-* wave
-this is the scheme of the high level architectue: 
 
-![image](https://user-images.githubusercontent.com/91313196/178319382-9fd768a9-c97d-4b8e-a436-5b38cbcc1724.png)
+https://user-images.githubusercontent.com/80604899/178480042-e4f722f4-85d7-425a-aff9-821eceec8a39.mp4
 
+## Installation
 
-**Recognize gestures** is devolped based on opencv and Mediapipe, it allows the robot to detect the correct movment of the person based 
-on the angles of the landmarks. the script of this node is **wabcam.py**
-
-once the gesture is correctly detected, a specific trajectory is send to the robot controller by the node **run_motion_python_node.py**,
-the trajectories are hard-coded in the yaml file **tiago_motion.yaml**.
-
-## Instructions for running the simulation
-1- Install Ubnutu 18.04 with ROS and TIAGO, by following this documentation [installation](http://wiki.ros.org/Robots/TIAGo/Tutorials/Installation/InstallUbuntuAndROS)
-
+1- Install Ubnutu 18.04 with ROS and TIAGO, by following this documentation [installation](http://wiki.ros.org/Robots/TIAGo/Tutorials/Installation/InstallUbuntuAndROS) and go to your workspace.
 2- clone the repository
-```bash
-git clone https://github.com/ghani35/Software-Architecture-Assignment.git 
-```
-3- source your workspace 
+3- put and replace tiago_trajectory_controller package inside  /src/tiago_tutorials/
+4- put and replace run_motion_python_node.py node inside /src/play_motion/play_motion/scripts/
+
+Do this commands: 
+
 ```
 source ./devel/setup.bash
 ```
-4- run roscore
+
 ```
 roscore 
 ```
-5- Build the workspace
+
 ```
 catkin build -DCATKIN_ENABLE_TESTING=0 -j $(expr `nproc` / 2)
 ```
-5- run the Gazebo simulation of Tiago 
+```
+rosparam load dump.yaml
+```
+
+5 - open, source and run this commands in three terminals :
+
 ```
  roslaunch tiago_gazebo tiago_gazebo.launch public_sim:=true robot:=steel world:=empty
 ```
-6- run the first node Gesture detector  **webcam.py**, this will open the camera of your computer, and show you the landmarks
 ```
-cd /home/<username>/tiago_public_ws/Software-Architecture-Assignment/src/tiago_tutorials/tiago_trajectory_controller/src/webcam.py
+rosrun tiago_tutorials/tiago_trajectory_controller webcam.py
 ```
 ```
-rosrun tiago_trajectory_controller webcam.py
+rosrun play_motion run_motion_python_node.py
 ```
-7- run the second node **run_motion_python_node.py**, this node send the desired trajectory to tiago after a correct detection of the gesture
+
+## Credits
+Prof. Simone Macciò
+Students: SINATRA GESUALDO  || ABDELGHANI BAKOUR || ZHOUYANG HONG     
